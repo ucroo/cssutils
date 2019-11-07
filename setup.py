@@ -13,6 +13,7 @@ __date__ = '$LastChangedDate::                            $:'
 import codecs
 import os
 import sys
+from distutils.command.build_py import build_py
 
 # extract the version without importing the module
 lines = open('src/cssutils/__init__.py')
