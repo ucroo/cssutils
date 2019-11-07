@@ -14,14 +14,8 @@ import codecs
 import os
 import sys
 
-# For Python 2.5
-try:
-    next
-except NameError:
-    next = lambda iter: iter.next
-
 # extract the version without importing the module
-lines = open('src3/cssutils/__init__.py')
+lines = open('src/cssutils/__init__.py')
 is_ver_line = lambda line: line.startswith('VERSION = ')
 line = next(line for line in lines if is_ver_line(line))
 
@@ -30,12 +24,6 @@ try:
     exec(line, locals(), globals())
 except TypeError:
     exec(line(), locals(), globals())
-
-# use the build_py_2to3 if we're building on Python 3
-try:
-    from distutils.command.build_py import build_py_2to3 as build_py
-except ImportError:
-    from distutils.command.build_py import build_py
 
 try:
     from setuptools import setup, find_packages
@@ -52,8 +40,8 @@ long_description = '\n' + read('README.txt') + '\n'# + read('CHANGELOG.txt')
 setup(
     name='cssutils',
     version=VERSION,
-    package_dir={'':'src3'},
-    packages=find_packages('src3'),
+    package_dir={'':'src'},
+    packages=find_packages('src'),
     test_suite='cssutils.tests', #'nose.collector'
     tests_require=['mock', 'pbr < 1.7.0'],
     entry_points={
